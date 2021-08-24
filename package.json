@@ -1,0 +1,24 @@
+{
+  "name": "employeetracking",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeffkorby/EmployeeTracking.git"
+  },
+  "author": "Jeff Korby",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jeffkorby/EmployeeTracking/issues"
+  },
+  "homepage": "https://github.com/jeffkorby/EmployeeTracking#readme",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "inquirer": "^8.1.2",
+    "mysql2": "^2.3.0"
+  }
+}
