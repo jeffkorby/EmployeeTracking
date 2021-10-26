@@ -43,7 +43,6 @@ const startPrompt = () => {
                 "View all Employees",
                 "Update an Employee's Role",
                 "Update an Employee's Manager",
-                "Remove a Department",
                 "Remove a Role",
                 "Remove an Employee",
                 "Exit",
@@ -82,10 +81,6 @@ const startPrompt = () => {
 
                 case "Update an Employee's Manager":
                     employeeManagerUpdate();
-                    break;
-
-                case "Remove a Department":
-                    departmentRemove();
                     break;
 
                 case "Remove a Role":
@@ -333,32 +328,6 @@ const employeeManagerUpdate = () => {
                             )
                         })
                 })
-            })
-    })
-}
-
-const departmentRemove = () => {
-    connection.query("SELECT * FROM department", function (err, results) {
-        if (err) throw err;
-        inquirer
-            .prompt([{
-                name: "departmentDeleteName",
-                type: "list",
-                message: "Please select the department you'd like to remove:",
-                choices: results.map(item => item.department_name)
-            },
-            ])
-
-            .then((answer) => {
-                const departmentReomve1 = results.find(item => item.department_name === answer.departmentDeleteName)
-                const departmentRemove2 = departmentReomve1.id
-                connection.query("DELETE FROM department WHERE id = " + "'" + departmentRemove2 + "'",
-                    function (err) {
-                        if (err) throw err;
-                        console.log("Successfully removed " + answer.departmentDeleteName + ".");
-                        startPrompt();
-                    }
-                )
             })
     })
 }
