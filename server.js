@@ -43,7 +43,6 @@ const startPrompt = () => {
                 "View all Employees",
                 "Update an Employee's Role",
                 "Update an Employee's Manager",
-                "Remove a Role",
                 "Remove an Employee",
                 "Exit",
             ]
@@ -328,31 +327,6 @@ const employeeManagerUpdate = () => {
                             )
                         })
                 })
-            })
-    })
-}
-
-const roleRemove = () => {
-    connection.query("SELECT * FROM roles", function (err, results) {
-        if (err) throw err;
-        inquirer
-            .prompt([{
-                name: "roleDeleteName",
-                type: "list",
-                message: "Select which role you want to remove:",
-                choices: results.map(item => item.title)
-            },
-            ])
-
-            .then((answer) => {
-                const roleRemove1 = results.find(item => item.title === answer.roleDeleteName)
-                const roleRemove2 = roleRemove1.id
-                connection.query("DELETE FROM roles WHERE id = " + "'" + roleRemove2 + "'",
-                    function (err) {
-                        if (err) throw err;
-                        console.log("Successfully removed " + answer.roleDeleteName + ".")
-                        startPrompt();
-                    })
             })
     })
 }
